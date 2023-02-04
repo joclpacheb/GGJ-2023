@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         _direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized;
         bool isGrounded = Physics.CheckSphere(_groundCheck.position, _groundCheckRadius, _groundMask);
-        _animator.SetBool("isJumping", !isGrounded);
+        //_animator.SetBool("isJumping", !isGrounded);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
