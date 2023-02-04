@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
         bool isGrounded = Physics.CheckSphere(_groundCheck.position, _groundCheckRadius, _groundMask);
         _animator.SetBool("isJumping", !isGrounded);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             _rigidbody.AddForce(-_gravityBody.GravityDirection * _jumpForce, ForceMode.Impulse);
         }
