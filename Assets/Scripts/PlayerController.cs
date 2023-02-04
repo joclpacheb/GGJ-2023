@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _groundCheck;
     [SerializeField] private Transform _cam;
     [SerializeField] private Animator _animator;
+    [SerializeField] private SpriteRenderer _renderer;
     
     private float _groundCheckRadius = 0.3f;
     private float _speed = 8;
@@ -47,7 +48,14 @@ public class PlayerController : MonoBehaviour
             _rigidbody.MovePosition(_rigidbody.position + direction * (_speed * Time.fixedDeltaTime));
             
             Quaternion rightDirection = Quaternion.Euler(0f, _direction.x * (_turnSpeed * Time.fixedDeltaTime), 0f);
-            Quaternion newRotation = Quaternion.Slerp(_rigidbody.rotation, _rigidbody.rotation * rightDirection, Time.fixedDeltaTime * 3f);;
+
+            if (_direction.x > 0 && !_renderer.flipX){
+                _renderer.flipX = true;
+            } else if (_direction.x < 0 && _renderer.flipX) {
+                _renderer.flipX = false;
+            }
+
+            Quaternion newRotation = Quaternion.Slerp(_rigidbody.rotation, _rigidbody.rotation * rightDirection, Time.fixedDeltaTime * 3f);
             _rigidbody.MoveRotation(newRotation);
         }
 
